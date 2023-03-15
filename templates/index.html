@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Smoky - Detector de Incendios</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="static/img/fav1.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="static/css/mdb.min.css" />
+</head>
+
+<body>
+  <!-- Start your project here-->
+
+  <div id="preview" class="preview">
+    <div style="display: none;">
+    </div>
+    <div>
+      <div data-draggable="true" style="position: relative;">
+        <!---->
+        <!---->
+        <section draggable="false" class="overflow-hidden pt-0" data-v-271253ee="">
+          <section class="" style="padding-bottom: 1px;">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-2">
+              <!-- Container wrapper -->
+              <div class="container-fluid">
+                <!-- Toggle button --> <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                  data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button> <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <!-- Navbar brand --> <a class="navbar-brand mt-2 mt-lg-0"> <img src="static/img/fav1.svg" height="15"
+                      alt="Logo" loading="lazy" aria-controls="#picker-editor"> </a> <!-- Left links -->
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"> <a class="nav-link" href="/" aria-controls="#picker-editor">Inicio</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/camaras" aria-controls="#picker-editor">Cámaras</a>
+                    </li>
+                  </ul> <!-- Left links -->
+                </div> <!-- Collapsible wrapper -->
+                <!-- Right elements -->
+                <div class="d-flex align-items-center">
+                  <!-- Icon --><a class="text-reset me-3"> <i class="fab fa-twitter" aria-controls="#picker-editor"></i>
+                  </a>
+                </div> <!-- Right elements -->
+              </div> <!-- Container wrapper -->
+            </nav> <!-- Navbar -->
+          </section>
+        </section>
+        <!---->
+      </div>
+      <div data-draggable="true" class="">
+        <!---->
+        <!---->
+        <section draggable="false" class="container pt-5" data-v-271253ee="" style="position: relative;">
+          <section class="mb-10 text-center">
+            <h2 class="fw-bold mb-7 text-center">Smoky - Detector de Incendios</h2>
+            <div class="row gx-lg-5 container2">
+
+              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0">
+                <div class="card shadow-2-strong">
+                  <div class="card-body">
+                    <div class="file-upload-wrapper">
+                      <h5 class="card-title">Subir Imagen</h5>
+                      <form method="post" action="/" enctype="multipart/form-data">
+                        <dl>
+                          <div class="file-drop-area">
+                            <span class="choose-file-button">Subir Imagen</span>
+                            <span class="file-message">o arrastralas aquí</span>
+                            <input class="file-input" type="file" name="file">
+                          </div>
+                        </dl>
+                        <p>
+                          <input type="submit" value="Analizar" class="btn btn-info">
+                        </p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-12 mb-6 mb-lg-0">
+                <div class="card shadow-2-strong">
+                  <div class="card-body">
+                    <h5 class="card-title">Resultado</h5>
+                    <p>
+                      {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                    <ul>
+                      {% for message in messages %}
+                      <li>{{ message }}</li>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                    </p>
+                    {% if filename %}
+                    <div align="center">
+                      <img src="{{ url_for('display_image', filename=filename) }}" class="img-fluid">
+                      <p>
+                      <form method="post" action="/" enctype="multipart/form-data">
+                        <button type="submit" class="btn btn-primary btn-rounded" name="fpositivo"
+                          value="{{filename}}">Falso Positivo</button>
+                        <button type="submit" class="btn btn-primary btn-rounded" name="fnegativo"
+                          value="{{filename}}">Falso Negativo</button>
+                      </form>
+                      </p>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <!---->
+      </div>
+      
+      <div data-draggable="true" class="" style="position: relative;">
+
+
+        <section draggable="false" class="container pt-5" data-v-271253ee="">
+          <section class="mb-10 text-center">
+            <h2 class="fw-bold mb-9 text-center">Estadísticas</h2>
+            <div class="row gx-lg-5">
+              <div class="col-lg-4 col-md-12 mb-8 mb-lg-0">
+                <div class="card shadow-2-strong h-100">
+                  <div class="d-flex justify-content-center" style="margin-top: -43px">
+                    <div class="p-4 bg-primary rounded-circle shadow-5-strong d-inline-block"> <i
+                        class="fas fa-cubes fa-2x text-white" aria-controls="#picker-editor"></i> </div>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="fw-bold text-primary mb-3">{{ Proce }}</h3>
+                    <h5 class="text-muted mb-3">Imagenes Analizadas</h5>
+                    <p class="text-muted">A través de la red de detección de incendios forestales</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 mb-8 mb-lg-0">
+                <div class="card shadow-2-strong h-100">
+                  <div class="d-flex justify-content-center" style="margin-top: -43px">
+                    <div class="p-4 bg-primary rounded-circle shadow-5-strong d-inline-block"> <i
+                        class="fas fa-chart-pie fa-2x text-white" aria-controls="#picker-editor"></i> </div>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="fw-bold text-primary mb-3">{{ Detec }}</h3>
+                    <h5 class="text-muted mb-3">Aciertos</h5>
+                    <p class="text-muted">Cantidad de Incendios detectados</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 mb-8 mb-lg-0">
+                <div class="card shadow-2-strong h-100">
+                  <div class="d-flex justify-content-center" style="margin-top: -43px">
+                    <div class="p-4 bg-primary rounded-circle shadow-5-strong d-inline-block"> <i
+                        class="fas fa-cogs fa-2x text-white" aria-controls="#picker-editor"></i> </div>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="fw-bold text-primary mb-3">0</h3>
+                    <h5 class="text-muted mb-3">Falsos Positivos</h5>
+                    <p class="text-muted">Falsos positivos detectados</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src="static/js/mdb.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript"
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+</body>
+
+</html>
